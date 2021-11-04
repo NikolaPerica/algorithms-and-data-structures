@@ -8,7 +8,7 @@ int* podniz(int* niz, int start, int stop)
 	int j = 0;
 	int size = stop - start;
 	int* pod = (int*)malloc(size * sizeof(int));
-	for (int i = start; i < stop + 1; i++) 
+	for (int i = start; i < stop; i++)
 	{
 		pod[j] = niz[i];
 		j++;
@@ -62,22 +62,24 @@ typedef struct
 
 typedef struct
 {
-	Tocka vrhovi[10];
+	Tocka *vrhovi;
 	int n;
 
 }Poligon;
 
 Poligon* novi_poligon(float* tocke_x, float* tocke_y, int n)
 {
+	Tocka* nizVrhova= (Tocka*)malloc(n*sizeof(Tocka));
 	Poligon* novi;
 	novi = (Poligon*)malloc(sizeof(Poligon));
 	novi->n = n;
 	int i;
 	for (i = 0; i < n; i++)
 	{
-		novi->vrhovi[i].x = tocke_x[i];
-		novi->vrhovi[i].y = tocke_y[i];
+		nizVrhova[i].x = tocke_x[i];
+		nizVrhova[i].y = tocke_y[i];
 	}
+	novi->vrhovi = nizVrhova;
 	return novi;
 }
 
@@ -105,19 +107,17 @@ Tocka** pozitivni(Poligon* p, int* np)
 
 
 int main(void)
-{
-	/*int niz[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+{/*
+	int niz[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 	int n = sizeof(niz) / sizeof(int);
 	int start = 2;
 	int stop = 6;
-
 	printf("Niz je: ");
 	for (int i = 0; i < n; i++)
 	{
 		printf("%d ", niz[i]);
 	}
 	printf("\n");
-
 	int* novi = podniz(niz, start, stop);
 	printf("Podniz je: ");
 	for (int i = 0; i < (stop-start); i++)
@@ -125,11 +125,10 @@ int main(void)
 		printf("%d ", novi[i]);
 	}
 	printf("\n");
-	
+
 	int i;
 	int nth;
 	int th = 5;
-
 	int* filter = filtriraj(niz, n, th, &nth);
 	printf("Filtrirani niz je: ");
 	for (i = 0; i < nth; i++)
@@ -137,18 +136,14 @@ int main(void)
 		printf("%d ", filter[i]);
 	}
 	printf("\n");
-
 	int** split;
 	split = podijeli(niz, n);
-
 	printf("Prvi dio niza je: ");
-
 	for (i = 0; i < n / 2; i++)
 	{
 		printf("%d ", split[0][i]);
 	}
 	printf("\n");
-
 	printf("Drugi dio niza je: ");
 	for (i = 0; i < n / 2; i++)
 	{
@@ -183,7 +178,7 @@ int main(void)
 		printf("(%.2f, %.2f) ", pozit[i]->x, pozit[i]->y);
 	}
 
-	//system("pause");
+	system("pause");
 	return 0;
 
 }

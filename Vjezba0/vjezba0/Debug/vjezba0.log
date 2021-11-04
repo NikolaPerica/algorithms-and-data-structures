@@ -1,0 +1,3 @@
+﻿  main.c
+c:\users\nikola\desktop\vjezba0\vjezba0\main.c(109): warning C4101: 'str3': unreferenced local variable
+  vjezba0.vcxproj -> C:\Users\Nikola\Desktop\vjezba0\Debug\vjezba0.exe
