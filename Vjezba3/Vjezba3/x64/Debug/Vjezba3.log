@@ -1,0 +1,3 @@
+﻿  main.c
+C:\Users\Nikola\Desktop\Vjezbe Visual studio\Vjezba3\Vjezba3\main.c(100,12): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Vjezba3.vcxproj -> C:\Users\Nikola\Desktop\Vjezbe Visual studio\Vjezba3\x64\Debug\Vjezba3.exe
