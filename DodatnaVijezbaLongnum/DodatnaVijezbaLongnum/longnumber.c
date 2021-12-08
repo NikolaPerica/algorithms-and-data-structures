@@ -210,8 +210,8 @@ LongNumber mul_longnum(LongNumber numa, LongNumber numb)
 {
 	LongNumber sb = reverse(numb);
 	LongNumber newNum;
-	LongNumber	tmp = NULL;
-	LongNumber	tmppow=NULL;
+	LongNumber tmp = NULL;
+	LongNumber tmppow=NULL;
 
 	newNum = (LongNumber)malloc(sizeof(LongNumber));
 	newNum = NULL;
