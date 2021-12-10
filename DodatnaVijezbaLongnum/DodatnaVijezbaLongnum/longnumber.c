@@ -18,17 +18,28 @@ LongNumber AddToHead(LongNumber list, int z)
 // jer ce se operacije uglavnom oslanjati na dodavanje u glavu liste
 // ne gradi novu listu nego preuredjuje dobivenu listu
 LongNumber reverse(LongNumber num) 
-{
+{/*
 	LongNumber newNum, s = num;
-	newNum = (LongNumber)malloc(sizeof(LongNumber));
 	newNum = NULL;
-	while (s != NULL) 
-	{
+	while (s != NULL) {
 		newNum = AddToHead(newNum, s->z);
 		s = s->next;
 	}
-
-	return newNum;
+	s = num;
+	delete_longnum(s);
+	
+	return newNum;*/
+	LongNumber prev = NULL;
+	LongNumber curr = num;
+	LongNumber next = NULL;
+	while (curr != NULL)
+	{
+		next = curr->next; //spremi iduci
+		curr->next = prev; //okreni
+		prev = curr; // nastavi
+		curr = next; //
+	}
+	return prev; // novi pocetak
 }
 
 // cita broj iz tekstualne datoteke znamenku po znamenku i gradi listu (dugi broj)
@@ -84,8 +95,7 @@ void delete_longnum(LongNumber num)
 	if (num == NULL)
 		return;
 	LongNumber tmp1 = num, tmp2 = num->next;
-	while (tmp2 != NULL) 
-	{
+	while (tmp2 != NULL) {
 		free(tmp1);
 		tmp1 = tmp2;
 		tmp2 = tmp2->next;
@@ -98,7 +108,6 @@ LongNumber add_longnum(LongNumber numa, LongNumber numb)
 	LongNumber newNum;
 	int overflow = 0;
 
-	newNum = (LongNumber)malloc(sizeof(LongNumber));
 	newNum = NULL;
 
 	if (numa == NULL)
@@ -165,7 +174,6 @@ LongNumber mul_by_digit(LongNumber num, int z)
 	LongNumber s = reverse(num), newNum;
 	int overflow = 0;
 
-	newNum = (LongNumber)malloc(sizeof(LongNumber));
 	newNum = NULL;
 
 	if (num == NULL)
@@ -208,22 +216,17 @@ LongNumber mul_by_pow10(LongNumber num, int pow)
 // Gradi se potpuno nova lista (broj) kao rezultat.
 LongNumber mul_longnum(LongNumber numa, LongNumber numb) 
 {
-	LongNumber sb = reverse(numb);
-	LongNumber newNum;
-	LongNumber tmp = NULL;
-	LongNumber tmppow=NULL;
-
-	newNum = (LongNumber)malloc(sizeof(LongNumber));
-	newNum = NULL;
+	LongNumber tmp1=NULL, tmp2=NULL, suma = NULL;
 	int i = 0;
-	while (sb != NULL) 
-	{
-		tmppow = mul_by_pow10(numa, i);
-		tmp = mul_by_digit(tmppow, (sb->z));
-		newNum = add_longnum(newNum, tmp);
-		i ++;
-		sb = sb->next;
+	while (numb != NULL) {
+		tmp1 = mul_by_pow10(numa, i);
+		tmp2 = mul_by_digit(tmp1, numb->z);
+		suma = add_longnum(suma, tmp2);
+		numb = numb->next;
+		i++;
 	}
+	free(tmp1);
+	free(tmp2);
 
-	return newNum;
+	return suma;
 }
