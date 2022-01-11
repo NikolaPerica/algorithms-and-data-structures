@@ -1,0 +1,7 @@
+﻿  main.c
+C:\Users\Nikola\source\repos\Vjezba5\Vjezba5\main.c(15,18): warning C4013: 'PopraviPremaVrhu' undefined; assuming extern returning int
+C:\Users\Nikola\source\repos\Vjezba5\Vjezba5\main.c(43,37): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
+C:\Users\Nikola\source\repos\Vjezba5\Vjezba5\main.c(45,17): warning C4013: 'PopraviPremaDnu' undefined; assuming extern returning int
+C:\Users\Nikola\source\repos\Vjezba5\Vjezba5\main.c(75): warning C4715: 'PopraviPremaDnu': not all control paths return a value
+C:\Users\Nikola\source\repos\Vjezba5\Vjezba5\main.c(38): warning C4715: 'PopraviPremaVrhu': not all control paths return a value
+  Vjezba5.vcxproj -> C:\Users\Nikola\source\repos\Vjezba5\Debug\Vjezba5.exe
