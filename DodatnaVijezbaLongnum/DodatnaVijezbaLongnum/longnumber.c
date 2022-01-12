@@ -18,28 +18,20 @@ LongNumber AddToHead(LongNumber list, int z)
 // jer ce se operacije uglavnom oslanjati na dodavanje u glavu liste
 // ne gradi novu listu nego preuredjuje dobivenu listu
 LongNumber reverse(LongNumber num) 
-{/*
-	LongNumber newNum, s = num;
-	newNum = NULL;
-	while (s != NULL) {
-		newNum = AddToHead(newNum, s->z);
-		s = s->next;
+{
+	LongNumber rev = NULL;
+
+	while (num != NULL) {
+		LongNumber tmp = (LongNumber)malloc(sizeof(Digit));
+		if (!tmp)
+			return NULL;
+		tmp->z = num->z;
+		tmp->next = rev;
+		rev = tmp;
+		num = num->next;
 	}
-	s = num;
-	delete_longnum(s);
-	
-	return newNum;*/
-	LongNumber prev = NULL;
-	LongNumber curr = num;
-	LongNumber next = NULL;
-	while (curr != NULL)
-	{
-		next = curr->next; //spremi iduci
-		curr->next = prev; //okreni
-		prev = curr; // nastavi
-		curr = next; //
-	}
-	return prev; // novi pocetak
+
+	return rev;
 }
 
 // cita broj iz tekstualne datoteke znamenku po znamenku i gradi listu (dugi broj)
@@ -216,17 +208,30 @@ LongNumber mul_by_pow10(LongNumber num, int pow)
 // Gradi se potpuno nova lista (broj) kao rezultat.
 LongNumber mul_longnum(LongNumber numa, LongNumber numb) 
 {
-	LongNumber tmp1=NULL, tmp2=NULL, suma = NULL;
+	numb = reverse(numb);
+	LongNumber suma = NULL;
+	LongNumber tmp = (LongNumber)malloc(sizeof(Digit));
+
 	int i = 0;
+
 	while (numb != NULL) {
-		tmp1 = mul_by_pow10(numa, i);
-		tmp2 = mul_by_digit(tmp1, numb->z);
-		suma = add_longnum(suma, tmp2);
-		numb = numb->next;
+		
+
+		tmp = mul_by_digit(numa, numb->z);
+		tmp = mul_by_pow10(tmp, i);
+
+		if (suma != NULL) {
+			suma = add_longnum(suma, tmp);
+		}
+		else {
+			suma = tmp;
+		}
+
 		i++;
+
+		numb = numb->next;
 	}
-	free(tmp1);
-	free(tmp2);
 
 	return suma;
+
 }

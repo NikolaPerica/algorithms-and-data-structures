@@ -24,7 +24,7 @@ void main()
 	delete_longnum(numb);
 	delete_longnum(numc);
 	delete_longnum(numd);
-//	delete_longnum(nume);
-//	delete_longnum(numf);
+	delete_longnum(nume);
+	delete_longnum(numf);
 	
 }
