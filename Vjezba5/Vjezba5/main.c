@@ -50,23 +50,37 @@ int PopraviPremaDnu(Element* niz, int index, int max)
 	int L = 2 * index + 1;
 	int D = 2 * index + 2;
 	int temp;
-	if ((L > max) || (D > max)) 
+
+	if ((L > max) && (D > max)) 
 	{
 		return 0;
 	}
-	if ((niz[index].prioritet < niz[L].prioritet) && (niz[L].prioritet > niz[D].prioritet)) 
+	if (D > max)
 	{
-		temp = niz[index].prioritet;
-		niz[index].prioritet = niz[L].prioritet;
-		niz[L].prioritet = temp;
-		PopraviPremaDnu(niz, L, max);
+		if (niz[index].prioritet < niz[L].prioritet)
+		{
+			temp = niz[index].prioritet;
+				niz[index].prioritet = niz[L].prioritet;
+				niz[L].prioritet = temp;
+				PopraviPremaDnu(niz, L, max);
+		}
 	}
-	else if ((niz[index].prioritet < niz[D].prioritet)) 
+	else if ((niz[index].prioritet < niz[L].prioritet) && (niz[L].prioritet > niz[D].prioritet))
 	{
-		temp = niz[index].prioritet;
-		niz[index].prioritet = niz[D].prioritet;
-		niz[D].prioritet = temp;
-		PopraviPremaDnu(niz, D, max);
+		if (niz[L].prioritet > niz[D].prioritet)
+		{
+			temp = niz[index].prioritet;
+			niz[index].prioritet = niz[L].prioritet;
+			niz[L].prioritet = temp;
+			PopraviPremaDnu(niz, L, max);
+		}
+		else if ((niz[index].prioritet < niz[D].prioritet))
+		{
+			temp = niz[index].prioritet;
+			niz[index].prioritet = niz[D].prioritet;
+			niz[D].prioritet = temp;
+			PopraviPremaDnu(niz, D, max);
+		}
 	}
 	else 
 	{
@@ -84,25 +98,25 @@ void IspisiNiz(Element* niz, int n)
 void main() 
 {
 
-	Element gomila[10000];
+	Element gomila[10000] = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
 	int elCount = 0;
 
-	DodajElement(gomila, &elCount, 10);
-	DodajElement(gomila, &elCount, 2);
-	DodajElement(gomila, &elCount, 3);
+	DodajElement(gomila, &elCount, 5);
 	DodajElement(gomila, &elCount, 4);
-	DodajElement(gomila, &elCount, 50);
-	DodajElement(gomila, &elCount, 6);
-	DodajElement(gomila, &elCount, 7);
-	DodajElement(gomila, &elCount, 8);
-	DodajElement(gomila, &elCount, 9);
+	DodajElement(gomila, &elCount, 3);
+	DodajElement(gomila, &elCount, 2);
+	//DodajElement(gomila, &elCount, 50);
+	//DodajElement(gomila, &elCount, 6);
+	//DodajElement(gomila, &elCount, 7);
+	//DodajElement(gomila, &elCount, 8);
+	//DodajElement(gomila, &elCount, 1);
 
 	IzbrisiElement(gomila, &elCount);
+	/*IzbrisiElement(gomila, &elCount);
 	IzbrisiElement(gomila, &elCount);
 	IzbrisiElement(gomila, &elCount);
 	IzbrisiElement(gomila, &elCount);
-	IzbrisiElement(gomila, &elCount);
-	IzbrisiElement(gomila, &elCount);
+	IzbrisiElement(gomila, &elCount);*/
 	
 
 	IspisiNiz(gomila, elCount);
