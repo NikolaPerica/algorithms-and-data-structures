@@ -1,0 +1,6 @@
+﻿  main.c
+C:\Users\Nikola\Desktop\Vjezba8\Vjezba8\main.c(62,15): warning C4244: '=': conversion from 'clock_t' to 'float', possible loss of data
+C:\Users\Nikola\Desktop\Vjezba8\Vjezba8\main.c(64,15): warning C4244: '=': conversion from 'clock_t' to 'float', possible loss of data
+C:\Users\Nikola\Desktop\Vjezba8\Vjezba8\main.c(55,6): warning C4101: 'i': unreferenced local variable
+C:\Users\Nikola\Desktop\Vjezba8\Vjezba8\main.c(29): warning C4715: 'readWord': not all control paths return a value
+  Vjezba8.vcxproj -> C:\Users\Nikola\Desktop\Vjezba8\Debug\Vjezba8.exe
