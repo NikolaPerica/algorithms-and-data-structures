@@ -49,12 +49,12 @@ int Get(HashTable *ht, char *word)
 {
 	// vraca 0 ili 1 ovisno o tome da li rijec postoji u tablici
 	unsigned int indeks = hash(word) % ht->size;
-
-	while (ht->table[indeks] != NULL) {
-		if (!strcmp(ht->table[indeks]->word, word)) {
+	Bin* temp = ht->table[indeks];
+	while (temp != NULL) {
+		if (!strcmp(temp->word, word)) {
 			return 1;
 		}
-		ht->table[indeks] = ht->table[indeks]->next;
+		temp = temp->next;
 	}
 	return 0;
 }
